@@ -1,0 +1,73 @@
+/*
+|------------------------------------------
+|  Order Banner
+|------------------------------------------
+*/
+.order-bnr {
+	border-bottom: 8px solid #F78914;
+}
+
+.order-bnr .bg{	
+	height: 40vw;
+	overflow: hidden;
+}
+
+.order-bnr img {
+	width: 100%;
+}
+
+.order-bnr h2 {
+	text-align: center;
+	font-size: 35px;
+	padding: 80px 0;
+}
+
+/*
+|------------------------------------------
+|  Form
+|------------------------------------------
+*/
+.form.order {
+	background: #fff;
+}
+
+/*
+|------------------------------------------
+|  Order Flow
+|------------------------------------------
+*/
+.order-flow {
+	text-align: center;
+}
+
+.order-flow h3 {
+	font-family: 'Goldplay Bold';
+	font-size: 50px;
+	margin: 80px 0 50px;
+
+}
+
+.order-flow h3:first-of-type {
+	margin: 10px 0 50px;
+}
+
+.order-flow .payment-vector {
+	display: block;
+	margin: 0 auto;
+	padding: 100px 0;
+}
+
+/*
+|------------------------------------------
+|  Contact
+|------------------------------------------
+*/
+.contact.order {
+	padding: 100px 0 250px;
+}
+
+.contact.order h2 {
+	font-size: 27px;
+	margin: 0 0 150px;
+}
+

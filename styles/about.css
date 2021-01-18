@@ -1,0 +1,114 @@
+.orange-bnr{ 
+    position: relative;
+    overflow: hidden;
+    height: 850px;
+    width: 1920px;
+}
+.about{
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    top: 250px;
+    left: 100px;
+    font-family: "Goldplay Bold";
+}
+.explain{
+    top: 425px;
+    max-width: 600px;
+    left: 100px;
+    font-family: "Goldplay Regular";
+    font-size: 30px;
+    position: absolute;
+    color: white;
+}
+.learn{
+    position: absolute;
+    top: 800px;
+    left: 825px;
+    font-size: 30px;
+    color: white;
+}
+.arrow{
+    position: absolute;
+    top: 830px;
+    left: 850px;
+    width: 100px;
+}
+#brand{
+    margin-top: 50px;
+    margin-left: 400px;
+    margin-bottom: 50px;
+    font-size: 40px;
+    font-family: "Goldplay Bold";
+    color: #f78914;
+}
+.opening{
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-bottom: 0px;
+    width: 1000px;
+}
+.wrap{
+    display: inline-block;
+    margin-left: 400px;
+    width: 400px;
+    margin-bottom:100px;
+}
+
+.wrapped-img{
+    position: absolute;
+    width: 600px;
+    height: 330px;
+    left: 800px;
+    top: 1250px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+.off{
+    background-color: #f1f1f1;
+}
+.mission{
+    margin-top: 50px;
+    margin-left: 390px;
+    margin-bottom: 50px;
+    font-size: 40px;
+    font-family: "Goldplay Bold";
+    padding-top: 40px;
+    color: #f78914;
+}
+.description{
+    margin-left: 400px;
+    margin-right: 380px;
+    padding-bottom: 100px;
+    font-size: 20px;
+    color: black;
+}
+.testimonials{
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    background-color: #92CD28;
+}
+.quote{
+    display: inline-block;
+    color:black;
+    width: 300px;
+    padding-right: 50px;
+}
+.leftone{
+    display: inline-block;
+    color:black;
+    margin-left:500px;
+    width: 300px;
+    padding-right: 50px;
+}
+.rightone{
+    display: inline-block;
+    color:black;
+    width: 300px;
+    padding-right: 50px;
+    padding-top:50px;
+}
+.marginbot{
+    margin-bottom: 40px;
+}

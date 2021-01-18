@@ -1,0 +1,511 @@
+/*
+|------------------------------------------
+|  Global
+|------------------------------------------
+*/
+@font-face {
+    font-family: "Goldplay Regular";
+    src: url(../Goldplay/Goldplay\ Regular.otf);
+}
+
+@font-face {
+	font-family: "Goldplay SemiBold";
+    src: url(../Goldplay/Goldplay\ SemiBold.otf);
+}
+
+@font-face {
+	font-family: "Goldplay Bold";
+    src: url(../Goldplay/Goldplay\ Bold.otf);
+}
+
+body {
+    font-family:"Goldplay Regular";
+    line-height: 1.6;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+}
+
+.theme-wrapper {
+	overflow: hidden;
+}
+
+.is-flex {
+	display: flex;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.bg-center {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+/*
+|------------------------------------------
+|  Link
+|------------------------------------------
+*/
+a {
+	text-decoration: none;
+	color: #F78914;
+}
+
+/*
+|------------------------------------------
+|  Typography
+|------------------------------------------
+*/
+h2 {
+	font-family:"Goldplay SemiBold";
+	font-size: 47px;
+	color:  #F78914;
+	margin-bottom: 15px;
+}
+
+/*
+|------------------------------------------
+|  Btn
+|------------------------------------------
+*/
+.cta-btn {
+	color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Goldplay SemiBold';
+    letter-spacing: 0.05px;
+    width: 165px;
+    height: 45px;
+    background: #F78914;
+    border-radius: 50px;
+    border: none;
+    margin-top: 20px;
+    border: 1px solid linear-gradient(125deg, rgba(247,218,20,1) 0%, rgba(247,137,20,1) 100%);
+    transition: color .35s ease, background .35s ease-in-out, border .35s ease;
+}
+
+.cta-btn:hover {
+	color: #F78914;
+	border: 1px solid #F78914;
+	background: #fff;
+}
+
+/*
+|------------------------------------------
+|  Global Nav
+|------------------------------------------
+*/
+.gn {
+	font-family:"Goldplay SemiBold";
+    font-weight: bold;
+	font-size: 18px;
+	height: 85px;	
+	align-items: center;
+} 
+
+.gn .left-col {
+	flex-basis: 33.3333%;
+	max-width: 33.3333%;
+	color: #fff;
+	margin-left: 20px;
+}
+
+.gn .logo img {
+	width: 50px;
+}
+
+.gn .mid-col {
+	flex-basis: 53.3333%;
+	max-width: 53.3333%;
+	display: inline-flex;
+	justify-content: flex-end;
+}
+
+.gn .mid-col li {
+	margin-left: 25px;
+}
+
+.gn .mid-col a {
+	transition: color .35s ease;
+}
+
+.gn .mid-col a:hover {
+	color: #000;
+}
+
+.gn .right-col {
+	flex-basis: 13.3333%;
+	max-width: 13.3333%;
+	justify-content: flex-end;
+	display: flex;
+	margin-right: 25px;
+}
+
+.switch-lang {
+	border: 2px solid;
+	color: #F78914;
+	width: 30px;
+	height: 30px;
+	font-size: 16px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+}
+
+/*
+|------------------------------------------
+|  Banner
+|------------------------------------------
+*/
+.home-bnr {
+	font-family:"Goldplay Bold";
+	background-image: url(../images/home-bnr.jpg);
+	border-bottom: 8px solid #F78914;
+
+}
+
+.home-bnr .container {
+	height: 45vw;
+	padding: 0 60px;
+}
+
+.home-bnr.bg-center {
+	background-size: 94%;
+    background-position: revert;
+    background-position-x: -360%;
+    background-position-y: -31px;
+    background-repeat: no-repeat;
+}
+
+.bnr-deco {
+	width: 50%;
+    height: 100%;
+    background: #fff;
+    margin-left: auto;
+    transform: skew(-30deg);
+}
+
+.bnr-deco h1 {
+	font-size: 29px;
+	max-width: 260px;
+	margin-left: auto;
+	padding-top: 150px;
+	color: #F78914;
+	transform: skew(30deg) translate(-150px, 30px);
+}
+
+/*
+|------------------------------------------
+|  Our Story
+|------------------------------------------
+*/
+.our-story {
+	text-align: center;
+	padding: 130px 0 140px;
+	border-bottom: 8px solid #F78914;
+	position: relative;
+}
+
+.our-story-bg1,
+.our-story-bg2 {
+	position: absolute;
+	z-index: -1;
+}
+
+
+.our-story-bg1 {
+	transform: rotate(135deg) translate(101px, 820px) scale(0.5);
+}
+
+.our-story-bg2 {
+	transform: rotate(-135deg) translate(-200px, 900px) scale(0.5);
+}
+
+.our-story p {
+	max-width: 521px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.our-story .cta-btn {
+	margin-top: 50px;
+}
+
+/*
+|------------------------------------------
+|  Nutrition /& Want to join?
+|------------------------------------------
+*/
+.nutrition,
+.want-to-join {
+	background: rgba(196, 196, 196, 0.25);
+}
+
+.nutrition .is-flex,
+.want-to-join .is-flex {
+	height: 450px;
+}
+
+.nutrition .left-col,
+.want-to-join .right-col {
+	flex-basis: 50%;
+    max-width: 50%;
+    padding: 40px 55px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.nutrition .left-col p,
+.want-to-join .right-col p {
+	max-width: 400px;
+}
+
+.nutrition .right-col,
+.want-to-join .left-col {
+	background-image: url(../images/home-img1.jpg);
+	width: 50%;
+	flex-basis: 50%;
+	max-width: 50%;
+}
+
+/*
+|------------------------------------------
+|  Guarantee
+|------------------------------------------
+*/
+.guarantee {
+	text-align: center;
+	padding: 100px 0;
+	border-bottom: 8px solid #F78914;
+}
+
+.guarantee p {
+	margin: 0 auto;
+	max-width: 520px;
+}
+
+.guarantee .cta-btn {
+	margin-top: 50px;
+	width: 185px;
+}
+
+/*
+|------------------------------------------
+|  Want to join?
+|------------------------------------------
+*/
+.want-to-join .right-col {
+	align-items: center;
+	text-align: center;
+}
+
+.want-to-join .right-col h2 {
+	font-size: 35px;
+}
+
+.want-to-join .left-col {
+	background-image: url(../images/home-img2.jpg);
+
+}
+
+.want-to-join .cta-btn {
+	width: 185px;
+}
+
+/*
+|------------------------------------------
+|  Footer
+|------------------------------------------
+*/
+.footer {
+	font-family: "Goldplay SemiBold";
+	font-size: 16px;
+	padding: 100px 0;
+	text-align: center;
+	background: linear-gradient(135deg, rgba(247,218,20,1) -93%, rgba(247,176,20,1) 8%, rgba(247,137,20,1) 100%);
+}
+
+.footer .container {
+	max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer a {
+	color: #000;
+	transition: color .25s ease;
+}
+
+.footer a:hover {
+	color: #fff;
+}
+
+.footer .first-row {
+	border-bottom: .1px solid #202020;
+	padding-bottom: 35px;
+}
+
+.footer .first-row li:not(:last-child) {
+	padding-right: 15%;
+}
+
+.footer .left-list {
+	display: flex;
+	flex-basis: 35%;
+	max-width: 35%;
+	justify-content: flex-end;
+}
+
+.footer .mid-space {
+	flex-basis: 30%;
+	max-width: 30%;
+}
+
+.footer .right-list {
+	display: flex;
+	flex-basis: 35%;
+	max-width: 35%;
+}
+
+.footer .mid-row ul {
+	display: flex;
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.footer .mid-row li:not(:last-child) {
+	padding-right: 50px;
+}
+
+.footer .social-icon {
+	width: 48px;
+}
+
+.footer .last-row {
+	font-family: Goldplay Regular;
+	display: flex;
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+.footer .last-row p:first-child {
+	padding-right: 50px;
+}
+
+
+
+/*
+|------------------------------------------
+|------------------------------------------
+|------------------------------------------
+|  Media Queries
+|------------------------------------------
+|------------------------------------------
+|------------------------------------------
+*/
+@media (min-width: 1450px) {
+	body {
+		font-size: 20px;
+	}
+}
+
+@media (min-width: 1920px) {
+	/*global*/
+	body {
+		font-size: 25px;
+	}
+
+	.cta-btn {
+		font-size: 18px;
+		width: 225px;
+    	height: 55px;
+	}
+
+	.guarantee .cta-btn,
+	.want-to-join .cta-btn {
+		width: 235px;
+	}
+
+	/*gn*/
+	.gn {
+		font-size: 25px;
+    	height: 125px;
+	}
+
+	.gn .logo {
+		width: 60px;
+    	height: 60px;
+	}
+
+	.switch-lang {
+		width: 40px;
+   	 	height: 40px;
+   	 	font-size: 20px;
+	}
+
+	.gn .mid-col li {
+    	margin-left: 40px;
+	}
+
+	.gn .right-col {
+	    margin-right: 45px;
+	}
+
+	.gn .left-col {
+	    margin-left: 40px;
+	}
+
+	/*Banner*/
+	.bnr-deco {
+	    width: 100%;
+	    transform: skew(-30deg) translate(460px);
+	}
+
+	.bnr-deco h1 {
+	    font-size: 39px;
+	    max-width: 363px;
+	    padding-top: 211px;
+	    transform: skew(30deg) translate(-150px, 30px);
+	    position: absolute;
+	    left: 450px;
+	    top: 0;
+	}
+
+	/*Our Story*/
+	.our-story {
+		padding: 250px 0 240px;
+	}
+
+	.our-story-bg1 {
+	    transform: rotate(135deg) translate(101px, 820px) scale(0.8);
+	}
+	
+	.our-story-bg2 {
+	    transform: rotate(-135deg) translate(-60%, 120%) scale(0.8);
+	}
+
+	.our-story p {
+		max-width: 600px;
+	}
+
+	/*nutrition, want to join*/
+	.nutrition .container,
+	.want-to-join .container {
+		max-width: none;
+		margin: 0 auto;
+	}
+
+	.nutrition .left-col {
+		margin-left: 300px;
+	}
+		
+}
+
+
+

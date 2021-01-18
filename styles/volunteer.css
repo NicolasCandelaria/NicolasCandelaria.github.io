@@ -1,0 +1,88 @@
+h3 {
+	font-size: 35px;
+    text-align: center;
+}
+
+/*
+|------------------------------------------
+|  volunteer bnr
+|------------------------------------------
+*/
+.volunteer-bnr .img-col {
+	display: flex;
+    flex-basis: 50%;
+    max-width: 50%;
+}
+    
+.volunteer-bnr img {
+	width: 100%;
+}
+
+/*
+|------------------------------------------
+|  volunteer
+|------------------------------------------
+*/
+.volunteer {
+	padding: 160px 0;
+	text-align: center;
+	border-bottom: 8px solid #F78914;
+}
+
+.volunteer p {
+	max-width: 500px;
+    margin: auto;
+}
+
+/*
+|------------------------------------------
+|  volunteer form
+|------------------------------------------
+*/
+.form {
+	background: rgba(237, 237, 237, 1);
+	padding: 100px 0;
+}
+
+.form .list {
+	max-width: 500px;
+	margin: auto;
+}
+
+.form .list p {
+	font-family: 'Goldplay SemiBold';
+	margin-bottom: 15px;
+}
+
+.form .list p:first-of-type {
+	margin-top: 55px;
+}
+
+.form .input-box {
+	width: 450px;
+    height: 50px;
+    margin-bottom: 50px;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.form .cta-btn {
+	display: block;
+	margin: 20px auto;
+}
+
+/*
+|------------------------------------------
+|  contact
+|------------------------------------------
+*/
+.contact {
+	padding: 160px 0;
+	text-align: center;
+}
+
+.contact p {
+    margin: auto;
+}
+
+
