@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Favourite Projects — nic.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0608;
+    --bg-card: #141012;
+    --bg-card-top: #1c1416;
+    --cream: #e8dcc4;
+    --cream-dim: #b8ad96;
+    --text: #ffffff;
+    --text-muted: #8a8278;
+    --text-soft: #b8b0a4;
+    --nav-bg: #1a0e10;
+    --border: rgba(232, 220, 196, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--nav-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--cream); }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    width: 28px;
+    height: 28px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--cream);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 6, 8, 0.97);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-menu a {
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--cream); }
+
+  /* ============ HERO ============ */
+  .page-hero {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 140px 40px 56px;
+    text-align: center;
+  }
+
+  .page-hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 72px);
+    line-height: 1.05;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+
+  .page-hero .subtitle {
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.65;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ============ PROJECT GRID ============ */
+  .projects-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .project-card {
+    background: linear-gradient(180deg, var(--bg-card-top) 0%, var(--bg-card) 55%, #0e0a0c 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .project-card:hover {
+    border-color: rgba(232, 220, 196, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .project-card:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 2px;
+  }
+
+  .project-image {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-image.watch-world-burn { background-image: url('assets/images/favourite-projects/watch-world-burn.png'); }
+  .project-image.checkmate { background-image: url('assets/images/favourite-projects/checkmate.png'); }
+  .project-image.splitting-moon { background-image: url('assets/images/favourite-projects/splitting-moon.gif'); }
+  .project-image.abyte-agency { background-image: url('assets/images/favourite-projects/abyte-agency.png'); }
+  .project-image.cato-studios { background-image: url('assets/images/favourite-projects/cato-studios.png'); }
+  .project-image.dstinct { background-image: url('assets/images/favourite-projects/dstinct.png'); }
+  .project-image.cyberpunk { background-image: url('assets/images/favourite-projects/cyberpunk.gif'); }
+  .project-image.life-death-matrix { background-image: url('assets/images/favourite-projects/life-death-matrix.gif'); }
+  .project-image.coors-light { background-image: url('assets/images/favourite-projects/coors-light.jpg'); }
+  .project-image.madri-streetwear { background-image: url('assets/images/favourite-projects/madri-streetwear.jpg'); }
+  .project-image.delta-duffle { background-image: url('assets/images/favourite-projects/delta-duffle.jpg'); }
+  .project-image.ole-deck { background-image: url('assets/images/favourite-projects/ole-deck.png'); }
+
+  .project-body {
+    padding: 22px 22px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+  }
+
+  .project-desc {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 6, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border: none;
+    cursor: pointer;
+  }
+
+  .lightbox-panel {
+    position: relative;
+    z-index: 1;
+    width: min(960px, 100%);
+    max-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.3s ease;
+  }
+
+  .lightbox.is-open .lightbox-panel {
+    transform: translateY(0) scale(1);
+  }
+
+  .lightbox-media {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: #0e0a0c;
+    flex-shrink: 1;
+    min-height: 0;
+  }
+
+  .lightbox-img {
+    display: block;
+    width: 100%;
+    max-height: min(72vh, 720px);
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  .lightbox-caption {
+    text-align: center;
+    padding: 0 48px;
+  }
+
+  .lightbox-caption h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .lightbox-caption p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .lightbox-external {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--cream);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 220, 196, 0.35);
+    transition: opacity 0.2s;
+  }
+
+  .lightbox-external:hover { opacity: 0.75; }
+
+  .lightbox-external[hidden] { display: none; }
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: absolute;
+    z-index: 2;
+    background: var(--nav-bg);
+    border: 1px solid var(--border);
+    color: var(--cream);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    border-color: rgba(232, 220, 196, 0.25);
+    background: #241418;
+  }
+
+  .lightbox-close {
+    top: -52px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 24px;
+    padding-bottom: 2px;
+  }
+
+  .lightbox-prev { left: -56px; }
+  .lightbox-next { right: -56px; }
+
+  @media (max-width: 900px) {
+    .lightbox-prev { left: 8px; top: auto; bottom: 8px; transform: none; }
+    .lightbox-next { right: 8px; top: auto; bottom: 8px; transform: none; }
+    .lightbox-close { top: 8px; right: 8px; }
+    .lightbox-caption { padding: 0 8px; }
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: linear-gradient(180deg, #1a0a0c 0%, #0a0608 100%);
+    padding: 80px 24px 30px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  .footer-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-brand {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--cream);
+    margin-bottom: 24px;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .footer-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .footer-socials a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-socials a:hover { color: var(--cream); }
+
+  .footer-socials .icon {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    opacity: 0.6;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+  }
+
+  .footer-sitemap h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+
+  .footer-sitemap ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-sitemap a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    transition: color 0.2s;
+  }
+
+  .footer-sitemap a:hover,
+  .footer-sitemap a.active { color: var(--cream); }
+
+  .footer-copyright {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      left: 16px;
+      right: 16px;
+      transform: none;
+      width: calc(100% - 32px);
+      justify-content: space-between;
+      padding: 12px 18px;
+      gap: 0;
+    }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .page-hero {
+      padding: 110px 24px 40px;
+    }
+    .page-hero h1 { font-size: clamp(40px, 11vw, 56px); }
+    .page-hero .subtitle { font-size: 13px; }
+
+    .projects-section {
+      padding: 0 20px 72px;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+    .footer-brand { margin-bottom: 28px; }
+    .footer-socials { align-items: center; }
+    .footer-socials a { justify-content: center; }
+    .footer-sitemap ul { align-items: center; }
+    .footer-copyright { text-align: center; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-hero > * {
+    opacity: 0;
+    animation: fadeUp 0.9s ease-out forwards;
+  }
+  .page-hero h1 { animation-delay: 0.1s; }
+  .page-hero .subtitle { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="portfolio.html" class="nav-logo">nic.</a>
+  <ul class="nav-links">
+    <li><a href="about.html">ABOUT</a></li>
+    <li><a href="agency.html">MY AGENCY</a></li>
+    <li><a href="favourite-projects.html" class="active">FAVOURITE PROJECTS</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html">About</a>
+  <a href="agency.html">My Agency</a>
+  <a href="favourite-projects.html">Favourite Projects</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1>Favourite Projects</h1>
+  <p class="subtitle">Projects I loved but didn't want to write a case study for.</p>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" aria-label="Favourite projects">
+  <div class="projects-grid">
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/watch-world-burn.png" data-lightbox-title="Watch the World Burn" data-lightbox-desc="ASCII art I made using lights, shadows, colors and numbers.">
+      <div class="project-image watch-world-burn" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Watch the World Burn</h2>
+        <p class="project-desc">ASCII art I made using lights, shadows, colors and numbers.</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/checkmate.png" data-lightbox-title="Checkmate" data-lightbox-desc="Monochrome ASCII art using numbers of a very poetic position">
+      <div class="project-image checkmate" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Checkmate</h2>
+        <p class="project-desc">Monochrome ASCII art using numbers of a very poetic position</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/splitting-moon.gif" data-lightbox-title="Splitting the Moon" data-lightbox-desc="A Samurai slicing the moon made in Aftereffects">
+      <div class="project-image splitting-moon" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Splitting the Moon</h2>
+        <p class="project-desc">A Samurai slicing the moon made in Aftereffects</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/abyte-agency.png" data-lightbox-title="AByte Agency Redesign" data-lightbox-desc="A local Vancouver studio contracted me for branding, web ui, and marketing materials.">
+      <div class="project-image abyte-agency" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">AByte Agency Redesign</h2>
+        <p class="project-desc">A local Vancouver studio contracted me for branding, web ui, and marketing materials.</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/cato-studios.png" data-lightbox-title="Cato Studios Launch" data-lightbox-desc="A UK based creative studio that contracted me for a branding proposal.">
+      <div class="project-image cato-studios" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Cato Studios Launch</h2>
+        <p class="project-desc">A UK based creative studio that contracted me for a branding proposal.</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/dstinct.png" data-lightbox-title="DSTINCT.GG" data-lightbox-desc="A competitive sim racing team needed a refreshed branding and marketing for launch.">
+      <div class="project-image dstinct" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">DSTINCT.GG</h2>
+        <p class="project-desc">A competitive sim racing team needed a refreshed branding and marketing for launch.</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/cyberpunk.gif" data-lightbox-title="Cyberpunk Cityscape" data-lightbox-desc="Noisefield filter I tried to give a still-life motion">
+      <div class="project-image cyberpunk" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Cyberpunk Cityscape</h2>
+        <p class="project-desc">Noisefield filter I tried to give a still-life motion</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/life-death-matrix.gif" data-lightbox-title="Life and Death Matrix" data-lightbox-desc="Matrix rain art style I was playing with in Aftereffects">
+      <div class="project-image life-death-matrix" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Life and Death Matrix</h2>
+        <p class="project-desc">Matrix rain art style I was playing with in Aftereffects</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/coors-light.jpg" data-lightbox-title="Coors Light Sign" data-lightbox-desc="Really sick cyberpunkesque sign I made for work">
+      <div class="project-image coors-light" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Coors Light Sign</h2>
+        <p class="project-desc">Really sick cyberpunkesque sign I made for work</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/madri-streetwear.jpg" data-lightbox-title="Madri Streetwear" data-lightbox-desc="Just a sick button up that I would personally wear">
+      <div class="project-image madri-streetwear" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Madri Streetwear</h2>
+        <p class="project-desc">Just a sick button up that I would personally wear</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/delta-duffle.jpg" data-lightbox-title="Delta Airlines Duffle" data-lightbox-desc="The highest quality item I ever made, so much blood went into this">
+      <div class="project-image delta-duffle" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">Delta Airlines Duffle</h2>
+        <p class="project-desc">The highest quality item I ever made, so much blood went into this</p>
+      </div>
+    </button>
+
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/ole-deck.png" data-lightbox-title="OLE SoCal Summer Deck" data-lightbox-desc="A deck I made for fun for my favorite canned cocktail brand." data-lightbox-external="https://drive.google.com/file/d/1S8Lizmge4k1PIK35LCwM7azRBn-cu-j-/view?usp=sharing">
+      <div class="project-image ole-deck" aria-hidden="true"></div>
+      <div class="project-body">
+        <h2 class="project-title">OLE SoCal Summer Deck</h2>
+        <p class="project-desc">A deck I made for fun for my favorite canned cocktail brand. (Click to view)</p>
+      </div>
+    </button>
+
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+  <button type="button" class="lightbox-backdrop" aria-label="Close"></button>
+  <div class="lightbox-panel">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-prev" aria-label="Previous project">&#8249;</button>
+    <button type="button" class="lightbox-next" aria-label="Next project">&#8250;</button>
+    <div class="lightbox-media">
+      <img class="lightbox-img" src="" alt="" />
+    </div>
+    <div class="lightbox-caption">
+      <h3 id="lightboxTitle"></h3>
+      <p id="lightboxDesc"></p>
+      <a class="lightbox-external" href="#" target="_blank" rel="noopener noreferrer" hidden>Open full deck</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="portfolio.html" class="footer-brand">nic.</a>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/nicolasc-ux/" target="_blank" rel="noopener noreferrer"><span class="icon">in</span>LINKEDIN</a>
+        <a href="https://x.com/OnePathStudios" target="_blank" rel="noopener noreferrer"><span class="icon">𝕏</span>TWITTER</a>
+        <a href="https://medium.com/@nicolascandelaria" target="_blank" rel="noopener noreferrer"><span class="icon">M</span>MEDIUM</a>
+        <a href="https://behance.net/OnePathStudios" target="_blank" rel="noopener noreferrer"><span class="icon">B</span>BEHANCE</a>
+      </div>
+    </div>
+    <div class="footer-sitemap">
+      <h4>Site Map</h4>
+      <ul>
+        <li><a href="portfolio.html">WORK</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="agency.html">MY AGENCY</a></li>
+        <li><a href="favourite-projects.html" class="active">FAVOURITE PROJECTS</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copyright">© Made by Nicolas Candelaria</div>
+</footer>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = mobileMenu.querySelectorAll('a');
+
+  function toggleMenu() {
+    const isActive = hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) toggleMenu();
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('.lightbox-img');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+  const lightboxExternal = lightbox.querySelector('.lightbox-external');
+  const lightboxCloseBtn = lightbox.querySelector('.lightbox-close');
+  const lightboxBackdrop = lightbox.querySelector('.lightbox-backdrop');
+  const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+  const lightboxNext = lightbox.querySelector('.lightbox-next');
+  const projectCards = Array.from(document.querySelectorAll('.project-card[data-lightbox-src]'));
+  let lightboxIndex = 0;
+  let lastFocused = null;
+
+  function showLightbox(index) {
+    const card = projectCards[index];
+    if (!card) return;
+
+    lightboxIndex = index;
+    const src = card.dataset.lightboxSrc;
+    const title = card.dataset.lightboxTitle;
+    const desc = card.dataset.lightboxDesc;
+    const external = card.dataset.lightboxExternal;
+
+    lightboxImg.src = src;
+    lightboxImg.alt = title;
+    lightboxTitle.textContent = title;
+    lightboxDesc.textContent = desc;
+
+    if (external) {
+      lightboxExternal.href = external;
+      lightboxExternal.hidden = false;
+    } else {
+      lightboxExternal.hidden = true;
+    }
+
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxCloseBtn.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.removeAttribute('src');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function stepLightbox(delta) {
+    const next = (lightboxIndex + delta + projectCards.length) % projectCards.length;
+    showLightbox(next);
+  }
+
+  projectCards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      lastFocused = card;
+      showLightbox(index);
+    });
+  });
+
+  lightboxCloseBtn.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', e => { e.stopPropagation(); stepLightbox(-1); });
+  lightboxNext.addEventListener('click', e => { e.stopPropagation(); stepLightbox(1); });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  });
+
+  const cardObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = `opacity 0.7s ease-out ${i * 0.04}s, transform 0.7s ease-out ${i * 0.04}s, border-color 0.25s ease`;
+    cardObserver.observe(el);
+  });
+</script>
+
+</body>
+</html>
