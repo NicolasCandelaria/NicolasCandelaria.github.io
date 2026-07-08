@@ -160,4 +160,27 @@
       link.addEventListener('pointerleave', () => toX(0));
     });
   }
+
+  /* ---------- data-dim: drafting dimension line draws itself ----------
+     The horizontal rule sweeps out from the centre, the end ticks pop in,
+     then the mono label fades up — like a measurement being taken. */
+  gsap.utils.toArray('svg[data-dim]').forEach(svg => {
+    const rule = svg.querySelector('.dim-path');
+    const ticks = Array.from(svg.querySelectorAll('line')).filter(l => l !== rule);
+    const label = svg.querySelector('text');
+    if (!rule) return;
+    const len = Math.abs(
+      parseFloat(rule.getAttribute('x2')) - parseFloat(rule.getAttribute('x1'))
+    );
+    gsap.set(rule, { strokeDasharray: len, strokeDashoffset: len });
+    gsap.set(ticks, { scaleY: 0, transformOrigin: '50% 50%' });
+    if (label) gsap.set(label, { opacity: 0, y: 4 });
+    const tl = gsap.timeline({
+      scrollTrigger: { trigger: svg, start: 'top 92%', once: true },
+      delay: 0.55
+    });
+    tl.to(rule, { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' })
+      .to(ticks, { scaleY: 1, duration: 0.3, ease: 'back.out(2)', stagger: 0.08 }, '-=0.25');
+    if (label) tl.to(label, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, '-=0.1');
+  });
 })();

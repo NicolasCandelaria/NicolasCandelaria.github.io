@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <link rel="icon" href="assets/images/logo/favicon.png" type="image/png" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Favourite Projects — nic.</title>
+<title>The Lab · Nicolas Candelaria</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -214,7 +214,9 @@
   .project-image.watch-world-burn { background-image: url('assets/images/favourite-projects/watch-world-burn.png'); }
   .project-image.checkmate { background-image: url('assets/images/favourite-projects/checkmate.png'); }
   .project-image.splitting-moon { background-image: url('assets/images/favourite-projects/splitting-moon.gif'); }
-  .project-image.abyte-agency { background-image: url('assets/images/favourite-projects/abyte-agency.png'); }
+  .project-image.statecraft { background-image: url('assets/images/favourite-projects/statecraft.png'); }
+  a.project-card { text-decoration: none; color: inherit; display: block; }
+  .project-desc .play-link { color: var(--cream, #e8dcc4); text-decoration: underline; }
   .project-image.cato-studios { background-image: url('assets/images/favourite-projects/cato-studios.png'); }
   .project-image.dstinct { background-image: url('assets/images/favourite-projects/dstinct.png'); }
   .project-image.cyberpunk { background-image: url('assets/images/favourite-projects/cyberpunk.gif'); }
@@ -545,9 +547,10 @@
 <nav>
   <a href="index.html" class="nav-logo">nic.</a>
   <ul class="nav-links">
+    <li><a href="portfolio.html">WORK</a></li>
     <li><a href="about.html">ABOUT</a></li>
     <li><a href="agency.html">MY AGENCY</a></li>
-    <li><a href="favourite-projects.html" class="active">FAVOURITE PROJECTS</a></li>
+    <li><a href="favourite-projects.html" class="active">THE LAB</a></li>
   </ul>
   <button class="hamburger" aria-label="Menu" aria-expanded="false">
     <span></span>
@@ -558,52 +561,53 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
+  <a href="portfolio.html">Work</a>
   <a href="about.html">About</a>
   <a href="agency.html">My Agency</a>
-  <a href="favourite-projects.html">Favourite Projects</a>
+  <a href="favourite-projects.html">The Lab</a>
 </div>
 
 <!-- HERO -->
 <section class="page-hero">
-  <h1 data-split data-delay="0.15">Favourite Projects</h1>
-  <p class="subtitle" data-reveal data-delay="0.5">Projects I loved but didn't want to write a case study for.</p>
+  <h1 data-split data-delay="0.15">The Lab</h1>
+  <p class="subtitle" data-reveal data-delay="0.5">Experiments in light, motion, and material. Range, no business case required.</p>
 </section>
 
 <!-- PROJECTS -->
 <section class="projects-section" aria-label="Favourite projects">
   <div class="projects-grid">
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/watch-world-burn.png" data-lightbox-title="Watch the World Burn" data-lightbox-desc="ASCII art I made using lights, shadows, colors and numbers.">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/watch-world-burn.png" data-lightbox-title="Watch the World Burn" data-lightbox-desc="ASCII art: an image rebuilt from numerals, with light and shadow carried entirely by character density and colour.">
       <div class="project-image watch-world-burn" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Watch the World Burn</h2>
-        <p class="project-desc">ASCII art I made using lights, shadows, colors and numbers.</p>
+        <p class="project-desc">ASCII art: an image rebuilt from numerals, with light and shadow carried entirely by character density and colour.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/checkmate.png" data-lightbox-title="Checkmate" data-lightbox-desc="Monochrome ASCII art using numbers of a very poetic position">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/checkmate.png" data-lightbox-title="Checkmate" data-lightbox-desc="Monochrome ASCII study of a famously poetic chess position, drawn entirely in numerals.">
       <div class="project-image checkmate" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Checkmate</h2>
-        <p class="project-desc">Monochrome ASCII art using numbers of a very poetic position</p>
+        <p class="project-desc">Monochrome ASCII study of a famously poetic chess position, drawn entirely in numerals.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/splitting-moon.gif" data-lightbox-title="Splitting the Moon" data-lightbox-desc="A Samurai slicing the moon made in Aftereffects">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/splitting-moon.gif" data-lightbox-title="Splitting the Moon" data-lightbox-desc="A samurai slicing the moon. Frame-by-frame motion built in After Effects.">
       <div class="project-image splitting-moon" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Splitting the Moon</h2>
-        <p class="project-desc">A Samurai slicing the moon made in Aftereffects</p>
+        <p class="project-desc">A samurai slicing the moon. Frame-by-frame motion built in After Effects.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/abyte-agency.png" data-lightbox-title="AByte Agency Redesign" data-lightbox-desc="A local Vancouver studio contracted me for branding, web ui, and marketing materials.">
-      <div class="project-image abyte-agency" aria-hidden="true"></div>
+    <a class="project-card" href="https://nicolascandelaria.github.io/Statecraft/" target="_blank" rel="noopener noreferrer">
+      <div class="project-image statecraft" aria-hidden="true"></div>
       <div class="project-body">
-        <h2 class="project-title">AByte Agency Redesign</h2>
-        <p class="project-desc">A local Vancouver studio contracted me for branding, web ui, and marketing materials.</p>
+        <h2 class="project-title">Statecraft</h2>
+        <p class="project-desc">A Dialogue of Nations: a single-page strategy game, designed and coded solo. <span class="play-link">Play it on GitHub ↗</span></p>
       </div>
-    </button>
+    </a>
 
     <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/cato-studios.png" data-lightbox-title="Cato Studios Launch" data-lightbox-desc="A UK based creative studio that contracted me for a branding proposal.">
       <div class="project-image cato-studios" aria-hidden="true"></div>
@@ -621,43 +625,43 @@
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/cyberpunk.gif" data-lightbox-title="Cyberpunk Cityscape" data-lightbox-desc="Noisefield filter I tried to give a still-life motion">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/cyberpunk.gif" data-lightbox-title="Cyberpunk Cityscape" data-lightbox-desc="Noise-field displacement study: giving a still cityscape the illusion of motion.">
       <div class="project-image cyberpunk" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Cyberpunk Cityscape</h2>
-        <p class="project-desc">Noisefield filter I tried to give a still-life motion</p>
+        <p class="project-desc">Noise-field displacement study: giving a still cityscape the illusion of motion.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/life-death-matrix.gif" data-lightbox-title="Life and Death Matrix" data-lightbox-desc="Matrix rain art style I was playing with in Aftereffects">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/life-death-matrix.gif" data-lightbox-title="Life and Death Matrix" data-lightbox-desc="Matrix-rain type study animated in After Effects.">
       <div class="project-image life-death-matrix" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Life and Death Matrix</h2>
-        <p class="project-desc">Matrix rain art style I was playing with in Aftereffects</p>
+        <p class="project-desc">Matrix-rain type study animated in After Effects.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/coors-light.jpg" data-lightbox-title="Coors Light Sign" data-lightbox-desc="Really sick cyberpunkesque sign I made for work">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/coors-light.jpg" data-lightbox-title="Coors Light Sign" data-lightbox-desc="Cyberpunk-style illuminated sign concept for Coors Light, produced through Billboard Worldwide.">
       <div class="project-image coors-light" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Coors Light Sign</h2>
-        <p class="project-desc">Really sick cyberpunkesque sign I made for work</p>
+        <p class="project-desc">Cyberpunk-style illuminated sign concept for Coors Light, produced through Billboard Worldwide.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/madri-streetwear.jpg" data-lightbox-title="Madri Streetwear" data-lightbox-desc="Just a sick button up that I would personally wear">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/madri-streetwear.jpg" data-lightbox-title="Madri Streetwear" data-lightbox-desc="Madri button-up: apparel graphics designed to survive fabric, stitching, and real wear.">
       <div class="project-image madri-streetwear" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Madri Streetwear</h2>
-        <p class="project-desc">Just a sick button up that I would personally wear</p>
+        <p class="project-desc">Madri button-up: apparel graphics designed to survive fabric, stitching, and real wear.</p>
       </div>
     </button>
 
-    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/delta-duffle.jpg" data-lightbox-title="Delta Airlines Duffle" data-lightbox-desc="The highest quality item I ever made, so much blood went into this">
+    <button type="button" class="project-card" data-lightbox-src="assets/images/favourite-projects/delta-duffle.jpg" data-lightbox-title="Delta Airlines Duffle" data-lightbox-desc="The highest quality item I ever made, so much blood went into this.">
       <div class="project-image delta-duffle" aria-hidden="true"></div>
       <div class="project-body">
         <h2 class="project-title">Delta Airlines Duffle</h2>
-        <p class="project-desc">The highest quality item I ever made, so much blood went into this</p>
+        <p class="project-desc">The highest quality item I ever made, so much blood went into this.</p>
       </div>
     </button>
 
@@ -705,10 +709,10 @@
     <div class="footer-sitemap" data-reveal>
       <h4>Site Map</h4>
       <ul>
-        <li><a href="index.html">WORK</a></li>
+        <li><a href="portfolio.html">WORK</a></li>
         <li><a href="about.html">ABOUT</a></li>
         <li><a href="agency.html">MY AGENCY</a></li>
-        <li><a href="favourite-projects.html" class="active">FAVOURITE PROJECTS</a></li>
+        <li><a href="favourite-projects.html" class="active">THE LAB</a></li>
       </ul>
     </div>
   </div>
