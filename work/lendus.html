@@ -337,6 +337,88 @@
   .case-gallery { display: grid; gap: 14px; margin: 30px 0 6px; max-width: 780px; }
   .case-gallery.g2 { grid-template-columns: 1fr 1fr; align-items: start; }
   .case-gallery img { width: 100%; border-radius: 4px; border: 1px solid var(--border); display: block; }
+  .case-gallery button {
+    display: block; width: 100%; padding: 0; margin: 0;
+    border: none; background: none; cursor: zoom-in;
+    font: inherit; color: inherit; text-align: left;
+  }
+  .case-gallery button:focus-visible {
+    outline: 2px solid var(--cream); outline-offset: 2px; border-radius: 4px;
+  }
+  .case-img .frame { cursor: zoom-in; }
+  .case-img button.frame-trigger {
+    display: block; width: 100%; padding: 0; margin: 0;
+    border: none; background: none; cursor: zoom-in; text-align: left;
+  }
+  .case-img button.frame-trigger:focus-visible {
+    outline: 2px solid var(--cream); outline-offset: 2px; border-radius: 4px;
+  }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .lightbox.is-open { opacity: 1; visibility: visible; }
+  .lightbox-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(10, 6, 8, 0.92);
+    backdrop-filter: blur(12px);
+    border: none; cursor: pointer;
+  }
+  .lightbox-panel {
+    position: relative; z-index: 1;
+    width: min(1100px, 100%);
+    max-height: calc(100vh - 48px);
+    display: flex; flex-direction: column; gap: 16px;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.3s ease;
+  }
+  .lightbox.is-open .lightbox-panel { transform: translateY(0) scale(1); }
+  .lightbox-media {
+    position: relative; border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--border); background: #0e0a0c;
+    flex-shrink: 1; min-height: 0;
+  }
+  .lightbox-img {
+    display: block; width: 100%;
+    max-height: min(82vh, 900px);
+    object-fit: contain; margin: 0 auto;
+  }
+  .lightbox-caption { text-align: center; padding: 0 48px; }
+  .lightbox-caption h3 {
+    font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px;
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute; z-index: 2;
+    background: var(--nav-bg); border: 1px solid var(--border);
+    color: var(--cream); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover {
+    border-color: rgba(232, 220, 196, 0.25); background: #241418;
+  }
+  .lightbox-close {
+    top: -52px; right: 0; width: 40px; height: 40px;
+    border-radius: 8px; font-size: 22px; line-height: 1;
+  }
+  .lightbox-prev, .lightbox-next {
+    top: 50%; transform: translateY(-50%);
+    width: 44px; height: 44px; border-radius: 50%;
+    font-size: 24px; padding-bottom: 2px;
+  }
+  .lightbox-prev { left: -56px; }
+  .lightbox-next { right: -56px; }
+  @media (max-width: 900px) {
+    .lightbox-prev { left: 8px; top: auto; bottom: 8px; transform: none; }
+    .lightbox-next { right: 8px; top: auto; bottom: 8px; transform: none; }
+    .lightbox-close { top: 8px; right: 8px; }
+    .lightbox-caption { padding: 0 8px; }
+  }
+
   .pb-stack { max-width: 1100px; margin: 20px auto 0; padding: 0 24px; }
   .pb-stack img { width: 100%; display: block; margin-bottom: 6px; }
   @media (max-width: 640px) { .case-gallery.g2 { grid-template-columns: 1fr; } }
@@ -393,7 +475,9 @@
 </section>
 
 <figure class="case-img" data-reveal>
-  <div class="frame" style="background-image:url('../assets/images/work/lendus.png')" role="img" aria-label="Lendus hero image"></div>
+  <button type="button" class="frame-trigger" data-lightbox-src="../assets/images/work/lendus.png" data-lightbox-title="Lendus cover" aria-label="Open Lendus cover image">
+    <div class="frame" style="background-image:url('../assets/images/work/lendus.png')" role="img" aria-hidden="true"></div>
+  </button>
   <figcaption>FIG. 1 · Marketplace design system and high-fidelity prototypes</figcaption>
 </figure>
 
@@ -405,7 +489,7 @@
 
 <section class="section">
   <div class="sec-label" data-reveal><b>SEC. 02</b> Process</div>
-  <div class="step" data-reveal><span class="n">01</span><div><h3>Understanding the brief</h3><p>Held discovery and planning sessions to define goals, target users, and the platform's value proposition: democratizing asset rental for individuals and small businesses, a seamless experience across devices, and a scalable MVP focused on booking, listing, and messaging.</p></div></div><div class="step" data-reveal><span class="n">02</span><div><h3>Designing with purpose</h3><p>Developed concepts rooted in simplicity, clarity, and flexibility, drawing on expectations set by e-commerce and social platforms, known pain points in existing rental services, and accessibility best practices. Early sketches emphasized visual hierarchy, modular asset display, and a dashboard built for users with minimal tech experience.</p></div></div><div class="step" data-reveal><span class="n">03</span><div><h3>Functional features</h3><p>Designed modals that surface key actions without page reloads, streamlined the listing flow to cut time-to-publish, introduced personalized marketplaces so users could skip building their own sites, and added real-time messaging for trust between parties.</p></div></div><div class="case-gallery g2" data-reveal><img loading="lazy" src="../assets/images/work/lendus/marketplace-wireframe.png" alt="Lendus wireframes and prototype flows" /><img loading="lazy" src="../assets/images/work/lendus/marketplace-live.png" alt="Personalized marketplace page" /></div><div class="step" data-reveal><span class="n">04</span><div><h3>Prototyping &amp; feedback loop</h3><p>Progressed from low-fidelity wireframes to high-fidelity prototypes. Testing surfaced navigation overload and heavy reliance on search, which drove a search-first redesign, tooltips, and homepage simplification. Iterations were informed by small business owners, observational testing, and rental industry advisors.</p></div></div><div class="step" data-reveal><span class="n">05</span><div><h3>Brand alignment &amp; finalization</h3><p>Aligned the UI with Lendus' mission: a friendly, minimal design system with clean typography, imagery focused on industrial and small business assets, and unified iconography and colour across the platform.</p></div></div><div class="case-gallery g2" data-reveal><img loading="lazy" src="../assets/images/work/lendus/listing-form.png" alt="Final listing flow" /><img loading="lazy" src="../assets/images/work/lendus/product-reviews.png" alt="Final map and browse view" /></div><div class="step" data-reveal><span class="n">06</span><div><h3>Production coordination</h3><p>Implemented scalable frontend systems: modular components for future features, responsive layouts for desktop and mobile, and backend-ready flows for booking, messaging, and asset management.</p></div></div><div class="case-gallery g2" data-reveal><img loading="lazy" src="../assets/images/work/lendus/homepage.png" alt="Lendus homepage" /><img loading="lazy" src="../assets/images/work/lendus/listing-preview.png" alt="Product listing preview" /><img loading="lazy" src="../assets/images/work/lendus/browse-results.png" alt="Browse and search results" /></div><div class="step" data-reveal><span class="n">07</span><div><h3>Delivery &amp; debut</h3><p>Launched the MVP with a simplified listing and booking flow, a search-first UI, and profile dashboards with messaging, introduced through a soft launch.</p></div></div>
+  <div class="step" data-reveal><span class="n">01</span><div><h3>Understanding the brief</h3><p>Held discovery and planning sessions to define goals, target users, and the platform's value proposition: democratizing asset rental for individuals and small businesses, a seamless experience across devices, and a scalable MVP focused on booking, listing, and messaging.</p></div></div><div class="step" data-reveal><span class="n">02</span><div><h3>Designing with purpose</h3><p>Developed concepts rooted in simplicity, clarity, and flexibility, drawing on expectations set by e-commerce and social platforms, known pain points in existing rental services, and accessibility best practices. Early sketches emphasized visual hierarchy, modular asset display, and a dashboard built for users with minimal tech experience.</p></div></div><div class="step" data-reveal><span class="n">03</span><div><h3>Functional features</h3><p>Designed modals that surface key actions without page reloads, streamlined the listing flow to cut time-to-publish, introduced personalized marketplaces so users could skip building their own sites, and added real-time messaging for trust between parties.</p></div></div><div class="case-gallery g2" data-reveal><button type="button" data-lightbox-src="../assets/images/work/lendus/marketplace-wireframe.png" data-lightbox-title="Marketplace wireframe"><img loading="lazy" src="../assets/images/work/lendus/marketplace-wireframe.png" alt="Lendus wireframes and prototype flows" /></button><button type="button" data-lightbox-src="../assets/images/work/lendus/marketplace-live.png" data-lightbox-title="Personalized marketplace"><img loading="lazy" src="../assets/images/work/lendus/marketplace-live.png" alt="Personalized marketplace page" /></button></div><div class="step" data-reveal><span class="n">04</span><div><h3>Prototyping &amp; feedback loop</h3><p>Progressed from low-fidelity wireframes to high-fidelity prototypes. Testing surfaced navigation overload and heavy reliance on search, which drove a search-first redesign, tooltips, and homepage simplification. Iterations were informed by small business owners, observational testing, and rental industry advisors.</p></div></div><div class="step" data-reveal><span class="n">05</span><div><h3>Brand alignment &amp; finalization</h3><p>Aligned the UI with Lendus' mission: a friendly, minimal design system with clean typography, imagery focused on industrial and small business assets, and unified iconography and colour across the platform.</p></div></div><div class="case-gallery g2" data-reveal><button type="button" data-lightbox-src="../assets/images/work/lendus/listing-form.png" data-lightbox-title="Listing flow"><img loading="lazy" src="../assets/images/work/lendus/listing-form.png" alt="Final listing flow" /></button><button type="button" data-lightbox-src="../assets/images/work/lendus/product-reviews.png" data-lightbox-title="Product reviews"><img loading="lazy" src="../assets/images/work/lendus/product-reviews.png" alt="Final map and browse view" /></button></div><div class="step" data-reveal><span class="n">06</span><div><h3>Production coordination</h3><p>Implemented scalable frontend systems: modular components for future features, responsive layouts for desktop and mobile, and backend-ready flows for booking, messaging, and asset management.</p></div></div><div class="case-gallery g2" data-reveal><button type="button" data-lightbox-src="../assets/images/work/lendus/homepage.png" data-lightbox-title="Homepage"><img loading="lazy" src="../assets/images/work/lendus/homepage.png" alt="Lendus homepage" /></button><button type="button" data-lightbox-src="../assets/images/work/lendus/listing-preview.png" data-lightbox-title="Listing preview"><img loading="lazy" src="../assets/images/work/lendus/listing-preview.png" alt="Product listing preview" /></button><button type="button" data-lightbox-src="../assets/images/work/lendus/browse-results.png" data-lightbox-title="Browse results"><img loading="lazy" src="../assets/images/work/lendus/browse-results.png" alt="Browse and search results" /></button></div><div class="step" data-reveal><span class="n">07</span><div><h3>Delivery &amp; debut</h3><p>Launched the MVP with a simplified listing and booking flow, a search-first UI, and profile dashboards with messaging, introduced through a soft launch.</p></div></div>
 </section>
 
 <section class="section">
@@ -418,6 +502,22 @@
     <span class="k">Next case study</span>
     <span class="t">Personal Branding →</span>
   </a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
+  <button type="button" class="lightbox-backdrop" aria-label="Close"></button>
+  <div class="lightbox-panel">
+    <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-prev" aria-label="Previous image">&#8249;</button>
+    <button type="button" class="lightbox-next" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-media">
+      <img class="lightbox-img" src="" alt="" />
+    </div>
+    <div class="lightbox-caption">
+      <h3 id="lightboxTitle"></h3>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -458,6 +558,63 @@
   mobileMenu.querySelectorAll('a').forEach(l => l.addEventListener('click', toggleMenu));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && mobileMenu.classList.contains('active')) toggleMenu();
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('.lightbox-img');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxCloseBtn = lightbox.querySelector('.lightbox-close');
+  const lightboxBackdrop = lightbox.querySelector('.lightbox-backdrop');
+  const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+  const lightboxNext = lightbox.querySelector('.lightbox-next');
+  const lightboxItems = Array.from(document.querySelectorAll('[data-lightbox-src]'));
+  let lightboxIndex = 0;
+  let lastFocused = null;
+
+  function showLightbox(index) {
+    const item = lightboxItems[index];
+    if (!item) return;
+    lightboxIndex = index;
+    const src = item.dataset.lightboxSrc;
+    const title = item.dataset.lightboxTitle || item.querySelector('img')?.alt || '';
+    lightboxImg.src = src;
+    lightboxImg.alt = title;
+    lightboxTitle.textContent = title;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxCloseBtn.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImg.removeAttribute('src');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function stepLightbox(delta) {
+    showLightbox((lightboxIndex + delta + lightboxItems.length) % lightboxItems.length);
+  }
+
+  lightboxItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      lastFocused = item;
+      showLightbox(index);
+    });
+  });
+
+  lightboxCloseBtn.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', e => { e.stopPropagation(); stepLightbox(-1); });
+  lightboxNext.addEventListener('click', e => { e.stopPropagation(); stepLightbox(1); });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
   });
 </script>
 
